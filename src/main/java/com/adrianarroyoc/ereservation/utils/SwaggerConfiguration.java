@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-	public Docket documentarion() {
+	public Docket documentation() {
 		return new Docket(
 				DocumentationType.SWAGGER_2).select().apis(
 						RequestHandlerSelectors.withClassAnnotation(

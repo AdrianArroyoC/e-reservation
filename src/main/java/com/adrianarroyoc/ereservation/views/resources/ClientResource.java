@@ -1,7 +1,10 @@
 package com.adrianarroyoc.ereservation.views.resources;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,6 +58,18 @@ public class ClientResource {
 			client.setEmailCli(clientVo.getEmailCli());
 			return new ResponseEntity<>(this.clientService.update(client), HttpStatus.OK);
 		}
+	}
+
+	@DeleteMapping("/{identification}")
+	public void removeClient(@PathVariable("identification") String identification) {
+		Client client = this.clientService.findByIdentification(identification);
+		if (client != null) {
+			this.clientService.delete(client);
+		}
+	}
+	
+	public ResponseEntity<List<Client>> findAll() {
+		return ResponseEntity.ok(this.clientService.findAll());
 	}
 	
 }
